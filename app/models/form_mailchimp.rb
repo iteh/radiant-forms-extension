@@ -12,10 +12,10 @@ class FormMailchimp
                             :send_notify => true,
                             :double_opt => false})
       if action == "subscribe"
-        h.subscribe(list_id, email, {:FNAME => fname, :LNAME => lname}, {:email_type => 'html', :send_welcome => true, :double_optin => false})
+        h.subscribe(listid, email, {:FNAME => fname, :LNAME => lname}, {:email_type => 'html', :send_welcome => true, :double_optin => false})
       end
       if action == "unsubscribe"
-        h.unsubscribe(list_id, email, {:delete_member => false, :send_goodbye => true, :send_notify => false})
+        h.unsubscribe(listid, email, {:delete_member => false, :send_goodbye => true, :send_notify => false})
       end
 
       @sent = true
@@ -33,9 +33,9 @@ class FormMailchimp
     }
   end
 
-  def list_id
-    list_id = @config[:list_id] || "0"
-    list_id
+  def listid
+    listid = Forms::Tags::Responses.retrieve(@data, @config[:field][:listid]) if @config[:field] && !@config[:field][:listid].blank?
+    listid
   end
 
   def action
