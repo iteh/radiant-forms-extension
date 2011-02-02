@@ -28,7 +28,8 @@ module Forms
             'action'        => nil,
             'placeholder'   => nil,
             'value'         => nil,
-            'maxlength'     => nil
+            'maxlength'     => nil,
+            'onclick'       => nil            
           }.merge(extras)
           
           result = attrs.collect do |k,v|
