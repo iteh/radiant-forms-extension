@@ -50,7 +50,7 @@ class FormMail
   end
   
   def sender
-    sender = @config[:sender] || "not-set@no.valid.domain.com"
+    sender = @config[:sender]
     sender = Forms::Tags::Responses.retrieve(@data, @config[:field][:sender]) if @config[:field] && !@config[:field][:sender].blank?
     sender
   end
